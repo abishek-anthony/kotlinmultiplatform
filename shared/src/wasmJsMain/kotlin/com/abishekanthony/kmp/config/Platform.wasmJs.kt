@@ -1,4 +1,4 @@
-package com.abishekanthony.kmp
+package com.abishekanthony.kmp.config
 
 class WasmPlatform: Platform {
     override val name: String = "Web with Kotlin/Wasm"

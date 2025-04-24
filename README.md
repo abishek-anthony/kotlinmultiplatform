@@ -2,6 +2,12 @@
 Template for KMP
 https://kmp.jetbrains.com/
 
+## Prerequisite
+- IntelliJ: Have `>= JDK 17` installed
+- IntelliJ: Have `Kotlin SDK` installed
+- IntelliJ-Plugin: Have `Compose Multiplatform installed`
+> Execute `./gradlew clean build` (see more: https://docs.gradle.org/current/userguide/build_lifecycle.html)
+
 ## general
 This is a Kotlin Multiplatform project targeting Web, Desktop, Server.
 

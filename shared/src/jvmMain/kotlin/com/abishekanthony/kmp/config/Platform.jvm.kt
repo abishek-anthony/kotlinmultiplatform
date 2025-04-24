@@ -1,4 +1,4 @@
-package com.abishekanthony.kmp
+package com.abishekanthony.kmp.config
 
 class JVMPlatform: Platform {
     override val name: String = "Java ${System.getProperty("java.version")}"
