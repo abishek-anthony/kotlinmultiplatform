@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="WASM run" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="./gradlew composeApp:wasmJsBrowserDevelopmentRun" />
+    <option name="SCRIPT_TEXT" value="./gradlew composeApp:wasmJsBrowserDistribution" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
