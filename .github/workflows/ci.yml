@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: ['main']
   pull_request:
-    branches: [ main, '*/my-esc-app']
+    branches: ['**']
 
 jobs:
   build-and-test:
