@@ -32,3 +32,13 @@ We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public S
 If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
 
 You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+
+
+## DockerImage / Dockerfile / DockerCompose
+- `docker-compose.yml` is for running the server in a Docker container.
+- `Dockerfile` is for building the server image.
+
+Basically the `server` is configured at [DockerFile](/server/Dockerfile).
+Additionally, there is a [DockerFile](/composeApp/Dockerfile) for the `WebAssembly` application.
+- to see the code on the browser you need to build the artifacts first.
+- Because the dockerfile of WASM will just copy the generated files to nginx server.
