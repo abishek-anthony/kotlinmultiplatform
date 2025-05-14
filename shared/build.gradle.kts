@@ -6,6 +6,12 @@ plugins {
     
 }
 
+repositories {
+    mavenCentral()
+    mavenLocal()
+    google()
+}
+
 kotlin {
     jvm()
     
@@ -28,7 +34,16 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.cio) // For JVM
+            implementation(libs.kotlinx.coroutines.core)
+        }
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js) // For Web
+        }
+
+        wasmJsTest.dependencies {
+
         }
     }
 }

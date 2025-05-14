@@ -32,3 +32,20 @@ We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public S
 If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
 
 You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+
+Project Insights:
+
+✅ Highlights
+In-memory message list: Stored in a StateFlow
+
+Reactive UI updates: Your ChatScreen just collects viewModel.messages
+
+Coroutine-friendly: Uses Dispatchers.Default, which works for JVM and JS
+
+⚠️ For WASM (Web), Dispatchers.Default maps to JS main thread (non-blocking).
+No ViewModel base class or Android-specific APIs — 100% KMP safe.
+
+
+Do this when, error while running a web app
+yarn cache clean
+rm -rf node_modules
