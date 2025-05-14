@@ -1,7 +1,7 @@
 package com.abishekanthony.kmp
 
 import com.abishekanthony.kmp.api.Api
-import com.abishekanthony.kmp.viewModel.SharedViewModel
+import com.abishekanthony.kmp.viewModel.navigation.NavigationViewModel
 import dev.mokkery.answering.returns
 import dev.mokkery.everySuspend
 import dev.mokkery.mock
@@ -23,14 +23,14 @@ class SharedViewModelTest {
 
     private val testDispatcher: TestDispatcher = StandardTestDispatcher()
     private lateinit var mockedApiClient: Api
-    private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var navigationViewModel: NavigationViewModel
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         mockedApiClient = mock<Api>()
-        sharedViewModel = SharedViewModel(mockedApiClient)
+        navigationViewModel = NavigationViewModel(mockedApiClient)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -49,7 +49,7 @@ class SharedViewModelTest {
         everySuspend { mockedApiClient.fetchHello() } returns "Test"
 
         val resultDeferred = CompletableDeferred<String>()
-        sharedViewModel.onButtonClick { result ->
+        navigationViewModel.onButtonClick { result ->
             resultDeferred.complete(result)
         }
 
