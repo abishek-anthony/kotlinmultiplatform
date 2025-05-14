@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main, '*/my-esc-app']
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - name: Build and run tests
+        run: ./gradlew clean build allTests
+
+      - name: Test Report
+        uses: dorny/test-reporter@v2
+        if: always()
+        with:
+          name: Kotlin Tests
+          path: '**/build/test-results/**/*.xml'
+          reporter: java-junit
+
+      - name: Copy test reports from all modules
+        run: |
+          mkdir -p public
+          find . -type d -path "**/build/reports/tests/*" | while read dir; do
+            module=$(echo $dir | cut -d'/' -f2)
+            mkdir -p public/$module
+            cp -r $dir/* public/$module/
+          done
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
