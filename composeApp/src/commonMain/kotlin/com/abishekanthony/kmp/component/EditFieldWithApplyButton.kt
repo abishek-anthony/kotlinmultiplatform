@@ -33,7 +33,11 @@ fun EditFieldWithApplyButton(
         )
         Spacer(modifier = Modifier.width(8.dp))
         Button(
-            onClick = onApplyClick,
+            onClick = {
+                onMessageChange(message.trim())
+                onApplyClick()
+                onMessageChange("")
+            },
             enabled = message.isNotBlank()
         ) {
             Text(buttonText)
