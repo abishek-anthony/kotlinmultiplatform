@@ -3,10 +3,12 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    
+    /*TODO: Add in the libs*/
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 repositories {
+    gradlePluginPortal()
     mavenCentral()
     mavenLocal()
     google()
@@ -14,7 +16,7 @@ repositories {
 
 kotlin {
     jvm()
-    
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser {
@@ -31,12 +33,14 @@ kotlin {
             }
         }
     }
-    
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.cio) // For JVM
             implementation(libs.kotlinx.coroutines.core)
+            /*TODO: Add in the libs*/
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.client.js) // For Web

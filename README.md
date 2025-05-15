@@ -33,6 +33,8 @@ If you face any issues, please report them on [GitHub](https://github.com/JetBra
 
 You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
 
+
+
 Project Insights:
 
 ✅ Highlights
@@ -49,3 +51,5 @@ No ViewModel base class or Android-specific APIs — 100% KMP safe.
 Do this when, error while running a web app
 yarn cache clean
 rm -rf node_modules
+
+The issue with your ChatClient implementation is that it uses the CIO engine, which is not compatible with JavaScript environments. For a Kotlin Multiplatform project, you need to use the appropriate HTTP client engine (CIO for JVM and Js for JavaScript). Additionally, you should ensure platform-specific configurations are handled properly.
