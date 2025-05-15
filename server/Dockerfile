@@ -4,15 +4,7 @@ FROM gradle:8.7-jdk21-alpine AS build
 WORKDIR /app
 
 # Copy Gradle wrapper and config
-COPY ../gradlew /app/
-COPY ../gradle /app/gradle
-COPY ../gradle.properties /app/
-COPY ../settings.gradle.kts /app/
-COPY ../build.gradle.kts /app/
-
-# Copy project modules
-COPY . /app/server
-COPY ../shared /app/shared
+COPY . /app/
 
 # Build the fat JAR
 RUN ./gradlew :server:shadowJar

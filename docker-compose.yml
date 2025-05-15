@@ -1,8 +1,8 @@
 services:
   server:
     build:
-      context: ./server
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./server/Dockerfile
     ports:
       - "8080:8080"
     environment:
@@ -10,6 +10,6 @@ services:
   wasm:
     build:
       context: .
-      dockerfile: composeApp/Dockerfile
+      dockerfile: ./composeApp/Dockerfile
     ports:
       - "8081:80"
