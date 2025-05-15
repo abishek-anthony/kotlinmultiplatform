@@ -7,7 +7,7 @@ import com.abishekanthony.kmp.navigation.Route.*
 
 class NavigationViewModel {
     var currentScreen by mutableStateOf(MAIN)
-        public get
+        private set
 
 
     fun navigate(to: Route) {

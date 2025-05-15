@@ -15,12 +15,12 @@ fun Application.restControllerRouting() {
 
     routing {
         authenticate("auth-basic") {
-            val userId = "J.A.B.I"
+            val userId = "MyChatGPT"
             get("/") {
                 call.respond(
                     ChatMessage(
                         userId = userId,
-                        text = "Hi, I am J.A.B.I. your Chat Assistant Bot.",
+                        text = "Hi, I am MyChatGPT. your Chat Assistant Bot.",
                         isUser = false
                     )
                 )

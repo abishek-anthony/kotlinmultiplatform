@@ -44,6 +44,8 @@ kotlin {
             implementation(libs.ktor.client.cio) // For JVM
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.logging)
+            implementation("co.touchlab:kermit:2.0.5")
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.client.js) // For Web

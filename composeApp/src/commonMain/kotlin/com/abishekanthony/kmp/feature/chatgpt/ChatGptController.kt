@@ -2,28 +2,48 @@ package com.abishekanthony.kmp.feature.chatgpt
 
 import com.abishekanthony.kmp.api.ApiClient
 import com.abishekanthony.kmp.dto.ChatMessage
-import io.ktor.client.*
+import com.abishekanthony.kmp.exception.ExceptionType
+import com.abishekanthony.kmp.exception.handle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+import kotlinx.coroutines.withContext
 
 class ChatGptController(
-    private val client: ApiClient = ApiClient(
-        HttpClient {
-        }
-    ),
+    private val client: ApiClient = ApiClient(),
 ) {
 
-    fun start(onResponse: (ChatMessage) -> Unit) {
+    fun start(onSuccess: (ChatMessage) -> Unit, onError: (ExceptionType) -> Unit) {
         CoroutineScope(Dispatchers.Default).launch {
-            onResponse(client.fetch())
+            handle(
+                onSuccess = {
+                    withContext(Dispatchers.Main) {
+                        onSuccess(client.fetch())
+                    }
+                },
+                onException = {
+                    withContext(Dispatchers.Main) {
+                        onError(it)
+                    }
+                }
+            )
         }
     }
 
-    fun executePrompt(prompt: List<ChatMessage>, onResponse: (ChatMessage) -> Unit) {
+    fun executePrompt(prompt: List<ChatMessage>, onSuccess: (ChatMessage) -> Unit, onError: (ExceptionType) -> Unit) {
         CoroutineScope(Dispatchers.Default).launch {
-            onResponse(client.prompt(prompt))
+            handle(
+                onSuccess = {
+                    withContext(Dispatchers.Main) {
+                        onSuccess(client.prompt(prompt))
+                    }
+                },
+                onException = {
+                    withContext(Dispatchers.Main) {
+                        onError(it)
+                    }
+                }
+            )
         }
     }
 }
