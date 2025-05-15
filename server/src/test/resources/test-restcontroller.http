@@ -1,0 +1,15 @@
+### Test GET /
+GET http://localhost:8080
+Accept: application/json
+
+###
+
+### Test POST /prompt
+POST http://localhost:8080/prompt
+Content-Type: application/json
+
+{
+  "userId": "test-user",
+  "text": "Hello, server!",
+  "isUser": true
+}
