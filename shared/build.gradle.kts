@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinMokkery)
     kotlin("plugin.serialization") version "1.9.20"
+    id("org.openapi.generator") version "6.3.0"
 }
 
 repositories {

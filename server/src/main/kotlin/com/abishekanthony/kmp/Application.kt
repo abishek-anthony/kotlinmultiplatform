@@ -1,6 +1,7 @@
 package com.abishekanthony.kmp
 
 import com.abishekanthony.kmp.config.SERVER_PORT
+import com.abishekanthony.kmp.configs.authorizationConfigs
 import com.abishekanthony.kmp.configs.corsConfigs
 import com.abishekanthony.kmp.configs.serializationConfigs
 import io.ktor.server.application.*
@@ -18,6 +19,7 @@ fun main() {
 fun Application.module() {
     corsConfigs()
     serializationConfigs()
+    authorizationConfigs()
     restControllerRouting()
 }
 

@@ -8,8 +8,7 @@ suspend inline fun <reified T> HttpResponse.getBody(): T {
     if (this.status == HttpStatusCode.OK) {
         return this.bodyAsText().toDto()
     } else {
-        println("Error: ${this.status}")
-        throw Exception("An error occurred: ${this.status}")
+        throw Exception(this.status.description)
     }
 }
 

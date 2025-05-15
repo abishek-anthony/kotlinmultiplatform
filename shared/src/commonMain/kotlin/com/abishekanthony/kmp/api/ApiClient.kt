@@ -15,6 +15,7 @@ class ApiClient(
     suspend fun fetch(): ChatMessage {
         println("Fetching data from server...")
         val response = client.request("$LOCAL_SERVER/") {
+            basicAuth("jetbrains", "foobar")
             contentType(Application.Json)
             method = HttpMethod.Get
         }
@@ -26,6 +27,7 @@ class ApiClient(
         println("Sending prompt to server...")
         val response = client.request("$LOCAL_SERVER/prompt") {
             method = HttpMethod.Post
+            basicAuth("jetbrains", "foobar")
             contentType(Application.Json)
             setBody(prompt.toJson())
         }
