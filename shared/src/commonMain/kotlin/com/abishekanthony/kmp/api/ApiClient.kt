@@ -23,7 +23,7 @@ class ApiClient(
         return response.getBody()
     }
 
-    suspend fun prompt(prompt: ChatMessage): ChatMessage {
+    suspend fun prompt(prompt: List<ChatMessage>): ChatMessage {
         println("Sending prompt to server...")
         val response = client.request("$LOCAL_SERVER/prompt") {
             method = HttpMethod.Post

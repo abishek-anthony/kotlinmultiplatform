@@ -21,7 +21,7 @@ class ChatGptController(
         }
     }
 
-    fun executePrompt(prompt: ChatMessage, onResponse: (ChatMessage) -> Unit) {
+    fun executePrompt(prompt: List<ChatMessage>, onResponse: (ChatMessage) -> Unit) {
         CoroutineScope(Dispatchers.Default).launch {
             onResponse(client.prompt(prompt))
         }

@@ -1,6 +1,8 @@
 package com.abishekanthony.kmp.feature.chatgpt
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,6 +26,7 @@ fun ChatGptScreen(
                 modifier = Modifier
                     .weight(1f)
                     .padding(8.dp)
+                    .verticalScroll(rememberScrollState())
             ) {
                 viewModel.chatHistory.onEach {
                     ChatBubble(

@@ -40,7 +40,7 @@ class ChatGptViewModel(
         )
 
         controller.executePrompt(
-            prompt = usersPrompt,
+            prompt = chatHistory,
             onResponse = { response ->
                 chatHistory = chatHistory.plus(
                     response

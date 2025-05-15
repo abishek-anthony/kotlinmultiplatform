@@ -1,8 +1,9 @@
 package com.abishekanthony.kmp
 
 import com.abishekanthony.kmp.dto.ChatMessage
+import com.abishekanthony.kmp.feature.chatgpt.ChatGptPromptController
 import io.ktor.server.application.*
-import io.ktor.server.auth.authenticate
+import io.ktor.server.auth.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -10,6 +11,8 @@ import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
 fun Application.restControllerRouting() {
+    val chatGptPromptController = ChatGptPromptController()
+
     routing {
         authenticate("auth-basic") {
             val userId = "J.A.B.I"
@@ -24,10 +27,7 @@ fun Application.restControllerRouting() {
 
             }
             post("/prompt") {
-                val chatMessage = call.receive<ChatMessage>()
-                // Here you can process the chat message and generate a response
-                // For now, we will just echo the message back with a timestamp and isUser flag = false
-                call.respond(chatMessage.copy(userId = userId, isUser = false))
+                call.respond(chatGptPromptController.handlePrompt(call.receive<List<ChatMessage>>()))
             }
         }
     }
