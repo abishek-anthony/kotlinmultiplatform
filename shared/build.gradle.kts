@@ -12,6 +12,11 @@ repositories {
     mavenCentral()
     mavenLocal()
     google()
+    // Required for Kotlin-wrappers (like org.w3c.notifications)
+    maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
+
+    // For Kotlin JS/WRAPPER libraries (like kotlin-notifications)
+    maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-wrappers/maven")
 }
 
 kotlin {
@@ -44,11 +49,12 @@ kotlin {
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.client.js) // For Web
+
+            // Notification wrapper (if needed)
+            implementation("org.jetbrains.kotlin-wrappers:kotlin-notifications:1.0.0-pre.697")
         }
 
-        wasmJsTest.dependencies {
 
-        }
     }
 }
 

@@ -4,6 +4,7 @@ import com.abishekanthony.kmp.SERVER_PORT
 import com.abishekanthony.kmp.data.ChatMessage
 import com.abishekanthony.kmp.service.ChatClient
 import com.abishekanthony.kmp.utils.createHttpClient
+import com.abishekanthony.kmp.utils.showNotification
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,7 +41,9 @@ class ChatViewModel {
                     timestamp = message.timestamp
                 )
                 _messages.value = _messages.value + msg
-
+                if (sender != "You") {
+                    showNotification("New Message from ${message.sender}", message.content)
+                }
             }
         }
     }

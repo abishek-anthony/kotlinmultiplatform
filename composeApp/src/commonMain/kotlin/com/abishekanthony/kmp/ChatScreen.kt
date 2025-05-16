@@ -104,5 +104,3 @@ fun MessageBubble(message: ChatMessage) {
         )
     }
 }
-
-
