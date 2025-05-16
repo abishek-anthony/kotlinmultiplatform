@@ -1,5 +1,6 @@
 package com.abishekanthony.kmp.model
 
+import com.abishekanthony.kmp.SERVER_PORT
 import com.abishekanthony.kmp.data.ChatMessage
 import com.abishekanthony.kmp.service.ChatClient
 import com.abishekanthony.kmp.utils.createHttpClient
@@ -25,7 +26,7 @@ class ChatViewModel {
     }
 
     init {
-        client.connect("localhost", 8080, "/chat")
+        client.connect("localhost", SERVER_PORT, "/chat")
 
         CoroutineScope(Dispatchers.Default).launch {
             client.messages.collect { raw ->

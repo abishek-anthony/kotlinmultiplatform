@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap
 import kotlin.time.Duration.Companion.seconds
 
 fun main() {
-    embeddedServer(Netty, port = 8080, host = "localhost") {
+    embeddedServer(Netty, port = SERVER_PORT, host = "localhost") {
         install(WebSockets) {
             pingPeriod = 15.seconds
         }
