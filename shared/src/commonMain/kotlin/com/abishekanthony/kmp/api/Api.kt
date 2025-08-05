@@ -1,6 +1,22 @@
 package com.abishekanthony.kmp.api
 
-interface Api {
+import io.ktor.client.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
 
-    suspend fun fetchHello(): String
+interface Api {
+    companion object{
+
+        fun defaultClient(more: () -> Unit = {}): HttpClient = HttpClient() {
+            install(ContentNegotiation) {
+                json(Json {
+                    prettyPrint = true
+                    isLenient = true
+                    ignoreUnknownKeys = true
+                })
+            }
+            more()
+        }
+    }
 }

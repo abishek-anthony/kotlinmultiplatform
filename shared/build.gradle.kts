@@ -4,6 +4,8 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinMokkery)
+    kotlin("plugin.serialization") version "1.9.20"
+    id("org.openapi.generator") version "6.3.0"
 }
 
 repositories {
@@ -40,6 +42,10 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.cio) // For JVM
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.logging)
+            implementation("co.touchlab:kermit:2.0.5")
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.client.js) // For Web

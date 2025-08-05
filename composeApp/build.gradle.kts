@@ -33,7 +33,7 @@ kotlin {
     
     sourceSets {
         val desktopMain by getting
-        
+
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -44,10 +44,23 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(projects.shared)
+
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+
+            implementation(libs.ktor.client.logging)
+            implementation("co.touchlab:kermit:2.0.5")
         }
+
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
+        }
+
+
+        wasmJsMain.dependencies {
+
         }
     }
 }
